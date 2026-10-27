@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Search App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🎬 Movie Search</h1>
+    <p>Search any movie from around the world</p>
+  </header>
+
+  <main>
+    <!-- Search bar -->
+    <form id="search-form">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search for a movie, e.g. Inception"
+        required
+      />
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- Message area (loading, errors, no results) -->
+    <p id="message"></p>
+
+    <!-- Search results -->
+    <section>
+      <h2>Results</h2>
+      <div id="results" class="movie-grid"></div>
+    </section>
+
+    <!-- Favorites -->
+    <section>
+      <h2>My Favorites</h2>
+      <div id="favorites" class="movie-grid"></div>
+    </section>
+  </main>
+
+  <!-- Movie details popup -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Movie data from <a href="https://www.omdbapi.com/" target="_blank">OMDb API</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
