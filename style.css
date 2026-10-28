@@ -11,9 +11,134 @@ body {
   min-height: 100vh;
 }
 
+.hidden {
+  display: none !important;
+}
+
+/* ===== Login page ===== */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 400px;
+  background: #1e293b;
+  border-radius: 14px;
+  padding: 36px 30px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.auth-box h1 {
+  font-size: 2rem;
+  color: #facc15;
+  margin-bottom: 6px;
+}
+
+.auth-box h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+
+#auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  background: #0f172a;
+  color: #e2e8f0;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #facc15;
+}
+
+.auth-error {
+  color: #f87171;
+  font-size: 0.9rem;
+  min-height: 20px;
+  text-align: center;
+}
+
+#auth-submit {
+  width: 100%;
+  padding: 13px;
+  background: #facc15;
+  color: #0f172a;
+  font-weight: bold;
+}
+
+#auth-submit:hover {
+  background: #fde047;
+}
+
+.auth-switch {
+  margin-top: 20px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+#auth-toggle {
+  background: none;
+  color: #facc15;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 0 4px;
+  font-size: 0.95rem;
+}
+
+.auth-note {
+  margin-top: 22px;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* ===== User bar (top of main app) ===== */
+.user-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  color: #cbd5e1;
+}
+
+#logout-btn {
+  padding: 8px 16px;
+  background: #334155;
+  color: #e2e8f0;
+}
+
+#logout-btn:hover {
+  background: #475569;
+}
+
+/* ===== Main app ===== */
 header {
   text-align: center;
-  padding: 40px 20px 20px;
+  padding: 20px 20px 20px;
 }
 
 header h1 {
@@ -159,10 +284,6 @@ button {
   z-index: 10;
 }
 
-.modal.hidden {
-  display: none;
-}
-
 .modal-content {
   background: #1e293b;
   border-radius: 12px;
@@ -211,6 +332,22 @@ button {
   line-height: 1.5;
 }
 
+/* Trailer button */
+.trailer-link {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 18px;
+  background: #ef4444;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.trailer-link:hover {
+  background: #dc2626;
+}
+
 footer {
   text-align: center;
   padding: 40px 20px;
@@ -219,4 +356,24 @@ footer {
 
 footer a {
   color: #facc15;
+}
+/* Home link + user bar layout */
+.user-bar {
+  justify-content: space-between;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-link {
+  color: #facc15;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  text-decoration: underline;
 }

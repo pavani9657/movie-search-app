@@ -1,6 +1,21 @@
+// ====== Login check ======
+function getCurrentUser() {
+  try {
+    return JSON.parse(localStorage.getItem("currentUser"));
+  } catch (error) {
+    return null;
+  }
+}
+
+const currentUser = getCurrentUser();
+if (!currentUser) {
+  window.location.href = "login.html";
+}
+
 // ====== Settings ======
 const API_KEY = "ac721a50";
 const BASE_URL = "https://www.omdbapi.com/";
+const FAV_KEY = "favorites_" + (currentUser ? currentUser.email : "guest");
 
 // Placeholder image for movies that have no poster
 const NO_POSTER =
@@ -21,22 +36,34 @@ const favoritesDiv = document.getElementById("favorites");
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modal-body");
 const modalClose = document.getElementById("modal-close");
+const userName = document.getElementById("user-name");
+const logoutBtn = document.getElementById("logout-btn");
+
+// ====== User bar ======
+if (currentUser) {
+  userName.textContent = `👤 Hi, ${currentUser.name}`;
+}
+
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("currentUser");
+  window.location.href = "login.html";
+});
 
 // ====== Data ======
 let lastResults = [];
 let favorites = loadFavorites();
 
-// ====== Favorites (saved in the browser) ======
+// ====== Favorites (saved in the browser, per user) ======
 function loadFavorites() {
   try {
-    return JSON.parse(localStorage.getItem("favorites")) || [];
+    return JSON.parse(localStorage.getItem(FAV_KEY)) || [];
   } catch (error) {
     return [];
   }
 }
 
 function saveFavorites() {
-  localStorage.setItem("favorites", JSON.stringify(favorites));
+  localStorage.setItem(FAV_KEY, JSON.stringify(favorites));
 }
 
 function isFavorite(id) {
@@ -169,6 +196,9 @@ async function showDetails(id) {
     }
 
     const poster = m.Poster && m.Poster !== "N/A" ? m.Poster : NO_POSTER;
+    const trailerUrl =
+      "https://www.youtube.com/results?search_query=" +
+      encodeURIComponent(m.Title + " " + m.Year + " official trailer");
 
     modalBody.innerHTML = `
       <div class="modal-details">
@@ -183,6 +213,9 @@ async function showDetails(id) {
           <p><strong>Director:</strong> ${escapeHTML(m.Director)}</p>
           <p><strong>Actors:</strong> ${escapeHTML(m.Actors)}</p>
           <p><strong>Plot:</strong> ${escapeHTML(m.Plot)}</p>
+          <p>
+            <a class="trailer-link" href="${escapeHTML(trailerUrl)}" target="_blank" rel="noopener">▶ Watch Trailer on YouTube</a>
+          </p>
         </div>
       </div>
     `;
